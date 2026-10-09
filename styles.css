@@ -1,4 +1,3 @@
-/* Fedora-inspired brand and color tokens */
 :root {
   color-scheme: light dark;
   --color-primary: light-dark(#294172, #8bb9f0);
@@ -8,7 +7,9 @@
   --color-text: light-dark(#17212b, #e8edf2);
   --color-text-muted: light-dark(#4c5661, #b0bdc8);
   --color-border: light-dark(#d5dce4, #354554);
-  --color-header-bg: rgb(23 30 38 / 0.96);
+  --color-header-bg: light-dark(rgb(81 154 212 / 0.96), rgb(45 99 148 / 0.96));
+  --color-header-text: #fff;
+  --color-header-hover: light-dark(rgb(255 255 255 / 0.16), rgb(255 255 255 / 0.12));
   --color-shadow: light-dark(rgb(23 33 43 / 0.1), rgb(0 0 0 / 0.3));
   --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --space-2: 1rem;
@@ -169,7 +170,7 @@ p {
   position: absolute;
   z-index: -1;
   inset-block-end: 0;
-  inset-inline-end: clamp(-7rem, 1vw, 1rem);
+  inset-inline-end: clamp(-9rem, -1vw, -1rem);
   width: clamp(34rem, 57vw, 64rem);
   max-width: 64%;
   height: auto;
@@ -371,6 +372,8 @@ body:has(.preview-modal:popover-open)::before {
 
 /* Project cards */
 .card {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -440,15 +443,18 @@ body:has(.preview-modal:popover-open)::before {
 }
 
 .card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .card-heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.75rem;
-  margin-bottom: 0.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .card-heading h3 {
@@ -457,7 +463,7 @@ body:has(.preview-modal:popover-open)::before {
 
 .tech-stack {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.35rem;
   margin: 0;
@@ -489,11 +495,17 @@ body:has(.preview-modal:popover-open)::before {
 }
 
 .card-links {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.625rem;
-  margin-top: 1.25rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
   list-style: none;
+}
+
+.card-links li,
+.card-links a {
+  width: 100%;
 }
 
 .card-links a {
@@ -586,7 +598,7 @@ body > header {
   min-height: 2.75rem;
   border-radius: var(--radius);
   text-decoration: none;
-  color: #d0d8e2;
+  color: var(--color-header-text);
   font-weight: 500;
   transition:
     color var(--transition),
@@ -594,27 +606,29 @@ body > header {
 }
 
 .nav-links a:hover {
-  color: var(--color-primary);
-  background: var(--color-surface);
+  color: var(--color-header-text);
+  background: var(--color-header-hover);
 }
 
 .theme-toggle {
   display: inline-grid;
-  width: 3rem;
-  height: 3rem;
+  width: 2.75rem;
+  height: 2.75rem;
   place-items: center;
-  border: 1px solid var(--color-border);
-  border-radius: 0.45rem;
-  background: var(--color-surface);
-  color: var(--color-primary);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-header-text);
   cursor: pointer;
-  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+  transition: background-color var(--transition);
 }
 
 .theme-toggle:hover {
-  background: var(--color-accent);
-  color: #fff;
-  border-color: var(--color-accent);
+  background: var(--color-header-hover);
+}
+
+.theme-toggle:focus-visible {
+  outline-color: #fff;
 }
 
 .theme-icon {
@@ -623,25 +637,29 @@ body > header {
   stroke-width: 2.2;
 }
 
-.theme-icon-light {
+.theme-icon-sun {
   display: none;
 }
 
-:root[data-theme="dark"] .theme-icon-dark {
-  display: none;
-}
-
-:root[data-theme="dark"] .theme-icon-light {
+.theme-icon-moon {
   display: block;
 }
 
+:root[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-icon-dark {
-    display: none;
+  :root:not([data-theme="light"]) .theme-icon-sun {
+    display: block;
   }
 
-  :root:not([data-theme="light"]) .theme-icon-light {
-    display: block;
+  :root:not([data-theme="light"]) .theme-icon-moon {
+    display: none;
   }
 }
 
@@ -726,7 +744,7 @@ small {
   }
 
   .hero-portrait {
-    inset-inline-end: -8rem;
+    inset-inline-end: -10rem;
     width: 30rem;
     max-width: none;
     opacity: 0.42;
