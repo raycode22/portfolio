@@ -7,50 +7,15 @@
   <title>Master | Software Developer</title>
   <link rel="icon" type="image/x-icon" href="/assets/site_icon.ico">
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
-  <script>
-    const root = document.documentElement;
-
-    try {
-      const theme = localStorage.getItem("theme");
-      if (theme === "light" || theme === "dark") {
-        root.dataset.theme = theme;
-      }
-    } catch (error) {
-      console.warn("Theme preference could not be loaded.", error);
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const themeButton = document.querySelector(".theme-toggle");
-      const colorScheme = matchMedia("(prefers-color-scheme: dark)");
-      const systemTheme = () => colorScheme.matches ? "dark" : "light";
-
-      function syncThemeButton(theme) {
-        themeButton.setAttribute("aria-pressed", String(theme === "dark"));
-        themeButton.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} theme`);
-      }
-
-      syncThemeButton(root.dataset.theme || systemTheme());
-      colorScheme.addEventListener("change", () => {
-        if (!root.dataset.theme) syncThemeButton(systemTheme());
-      });
-
-      themeButton.addEventListener("click", () => {
-        const nextTheme = (root.dataset.theme || systemTheme()) === "dark" ? "light" : "dark";
-        root.dataset.theme = nextTheme;
-        syncThemeButton(nextTheme);
-        try {
-          localStorage.setItem("theme", nextTheme);
-        } catch (error) {
-          console.warn("Theme preference could not be saved.", error);
-        }
-      });
-
-    });
-  </script>
-
+  <script src="script.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="site-loader" role="status" aria-label="Loading Portfolio">
+    <span class="loader-spinner" aria-hidden="true"></span>
+    <span class="loader-label">Loading Portfolio</span>
+  </div>
+
   <a href="#main-content" class="skip-link">Skip to content</a>
 
   <header>
@@ -115,12 +80,12 @@
 
           <div class="card-content">
             <div class="card-heading">
-              <h3>Project I</h3>
               <ul class="tech-stack" aria-label="Technologies used">
                 <li><iconify-icon icon="skill-icons:html" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">HTML</span></li>
                 <li><iconify-icon icon="skill-icons:css" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">CSS</span></li>
                 <li><iconify-icon icon="skill-icons:javascript" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">JavaScript</span></li>
               </ul>
+              <h3>Project I</h3>
             </div>
             <p>
               High-performance headless storefront built with vanilla JS and modern CSS Grid.
@@ -154,12 +119,12 @@
 
           <div class="card-content">
             <div class="card-heading">
-              <h3>Project II</h3>
               <ul class="tech-stack" aria-label="Technologies used">
                 <li><iconify-icon icon="skill-icons:react-dark" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">React</span></li>
                 <li><iconify-icon icon="skill-icons:typescript" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">TypeScript</span></li>
                 <li><iconify-icon icon="skill-icons:vite-dark" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Vite</span></li>
               </ul>
+              <h3>Project II</h3>
             </div>
             <p>
               Accessible data visualization interface focusing on WCAG 2.1 AA compliance.
@@ -193,12 +158,12 @@
 
           <div class="card-content">
             <div class="card-heading">
-              <h3>Project III</h3>
               <ul class="tech-stack" aria-label="Technologies used">
                 <li><iconify-icon icon="skill-icons:figma-dark" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Figma</span></li>
                 <li><iconify-icon icon="skill-icons:sass" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Sass</span></li>
                 <li><iconify-icon icon="skill-icons:git" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Git</span></li>
               </ul>
+              <h3>Project III</h3>
             </div>
             <p>
               Token-based component library using CSS Custom Properties for theme scalability.
@@ -231,12 +196,12 @@
 
           <div class="card-content">
             <div class="card-heading">
-              <h3>Project IV</h3>
               <ul class="tech-stack" aria-label="Technologies used">
                 <li><iconify-icon icon="skill-icons:nodejs-dark" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Node.js</span></li>
                 <li><iconify-icon icon="skill-icons:mongodb" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">MongoDB</span></li>
                 <li><iconify-icon icon="skill-icons:docker" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Docker</span></li>
               </ul>
+              <h3>Project IV</h3>
             </div>
             <p>
               Token-based component library using CSS Custom Properties for theme scalability.
@@ -269,12 +234,12 @@
 
           <div class="card-content">
             <div class="card-heading">
-              <h3>Project V</h3>
               <ul class="tech-stack" aria-label="Technologies used">
                 <li><iconify-icon icon="skill-icons:python-dark" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Python</span></li>
                 <li><iconify-icon icon="skill-icons:django" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Django</span></li>
                 <li><iconify-icon icon="skill-icons:postgresql-dark" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">PostgreSQL</span></li>
               </ul>
+              <h3>Project V</h3>
             </div>
             <p>
               Token-based component library using CSS Custom Properties for theme scalability.
@@ -307,12 +272,12 @@
 
           <div class="card-content">
             <div class="card-heading">
-              <h3>Project VI</h3>
               <ul class="tech-stack" aria-label="Technologies used">
                 <li><iconify-icon icon="skill-icons:vuejs-dark" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Vue.js</span></li>
                 <li><iconify-icon icon="skill-icons:tailwindcss-dark" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Tailwind CSS</span></li>
                 <li><iconify-icon icon="skill-icons:expressjs-dark" width="24" height="24" aria-hidden="true"></iconify-icon><span class="visually-hidden">Express.js</span></li>
               </ul>
+              <h3>Project VI</h3>
             </div>
             <p>
               Token-based component library using CSS Custom Properties for theme scalability.
@@ -390,19 +355,11 @@
   <div id="file-preview" popover="auto" class="preview-modal" role="dialog" aria-modal="false" aria-labelledby="cv-title">
     <header class="modal-header">
       <h2 id="cv-title" class="modal-title">Curriculum vitae</h2>
-      <div class="modal-actions">
-        <a class="icon-button" href="assets/documents/Enriquez_Christian_Ray_CV.pdf" download aria-label="Download CV (PDF)" title="Download CV">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <path d="m7 10 5 5 5-5M12 15V3"/>
-          </svg>
-        </a>
-        <button class="icon-button" type="button" popovertarget="file-preview" popovertargetaction="hide" aria-label="Close CV preview" title="Close" autofocus>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <path d="m18 6-12 12M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
+      <button class="icon-button" type="button" popovertarget="file-preview" popovertargetaction="hide" aria-label="Close CV preview" title="Close" autofocus>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="m18 6-12 12M6 6l12 12"/>
+        </svg>
+      </button>
     </header>
     <div class="modal-body">
       <iframe src="assets/documents/Enriquez_Christian_Ray_CV.pdf" title="Christian Ray C. Enriquez CV" class="preview-frame" loading="lazy">
