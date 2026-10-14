@@ -254,7 +254,7 @@ p {
   position: absolute;
   z-index: -1;
   inset-block-end: 0;
-  inset-inline-end: clamp(-9rem, -1vw, -1rem);
+  inset-inline-end: clamp(-8rem, calc(15rem - 18.75vw), -1rem);
   width: clamp(34rem, 57vw, 64rem);
   max-width: 64%;
   height: auto;
